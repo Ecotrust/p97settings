@@ -2,7 +2,7 @@ from ConfigParser import RawConfigParser
 import string
 
 # Note: CONFIG_FILE is an implicit requirement. 
-from django.conf.settings import CONFIG_FILE
+from django.conf import settings
 from django.core.management.base import BaseCommand
 from django.utils.crypto import get_random_string
 
@@ -18,12 +18,12 @@ comments or ordering.'''
 
     def handle(self, *args, **options):
         cfg = RawConfigParser()
-        cfg.read(CONFIG_FILE)
+        cfg.read(settings.CONFIG_FILE)
         
         if not cfg.has_section('APP'):
             cfg.add_section('APP')
 
         cfg.set('APP', 'SECRET_KEY', self.generate_secret())
-        cfg.write(open(CONFIG_FILE, 'w'))
+        cfg.write(open(settings.CONFIG_FILE, 'w'))
         
-        self.stdout.write('Successfully updated SECRET_KEY in %s' % CONFIG_FILE)
+        self.stdout.write('Successfully updated SECRET_KEY in %s' % settings.CONFIG_FILE)
