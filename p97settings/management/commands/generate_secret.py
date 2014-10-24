@@ -18,6 +18,7 @@ comments or ordering.'''
 
     def handle(self, *args, **options):
         cfg = RawConfigParser()
+        cfg.optionxform = str
         cfg.read(settings.CONFIG_FILE)
         
         if not cfg.has_section('APP'):
