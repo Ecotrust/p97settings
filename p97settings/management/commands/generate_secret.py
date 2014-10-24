@@ -2,7 +2,7 @@ from ConfigParser import RawConfigParser
 import string
 
 # Note: CONFIG_FILE is an implicit requirement. 
-from django.config.settings import CONFIG_FILE
+from django.conf.settings import CONFIG_FILE
 from django.core.management.base import BaseCommand
 from django.utils.crypto import get_random_string
 
